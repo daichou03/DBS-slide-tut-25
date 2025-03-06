@@ -1,0 +1,12 @@
+# Ignore PowerPoint temp files
+**/~$*.pptx
+
+# Ignore backup/autosave files
+**/*.tmp
+**/*.bak
+**/*.asd
+
+# Ignore OS-generated files
+.DS_Store
+Thumbs.db
+desktop.ini
