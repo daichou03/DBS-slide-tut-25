@@ -10,7 +10,7 @@ if ([string]::IsNullOrWhiteSpace($filePath)) {
 }
 
 # Construct API URL for commit history of the file
-$apiUrl = "https://api.github.com/repos/$repoOwner/$repoName/commits?path=$filePath"
+$apiUrl = "https://api.github.com/repos/${repoOwner}/${repoName}/commits?path=${filePath}"
 
 # Call GitHub API (User-Agent header is required)
 try {
@@ -33,8 +33,8 @@ Write-Output "Last commit date (UTC): $lastUpdated"
 $date = [datetime]::Parse($lastUpdated)
 $unixTimestamp = [int](([datetimeOffset]$date).ToUnixTimeSeconds())
 
-# Construct the raw URL with the cache-busting token
-$rawUrl = "https://raw.githubusercontent.com/${repoOwner}/${repoName}/${branch}/${filePath}?token=${unixTimestamp}"
+# Construct the raw URL with the cache-busting token in the new format
+$rawUrl = "https://github.com/${repoOwner}/${repoName}/raw/refs/heads/${branch}/${filePath}?token=${unixTimestamp}"
 
 Write-Output "`nRaw URL with cache busting token:"
 Write-Output $rawUrl
